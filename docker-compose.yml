@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  spotify-discord-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data
+    environment:
+      - SPOTIFY_CLIENT_SECRET=your-client-secret-here
+      - SPOTIFY_CLIENT_ID=your-client-id-here
+      - DISCORD_TOKEN=your-discord-token-here
+    restart: unless-stopped
+
