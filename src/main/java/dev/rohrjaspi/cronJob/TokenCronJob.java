@@ -5,7 +5,6 @@ import dev.rohrjaspi.SpotifyBot;
 import dev.rohrjaspi.api.AuthTokenManager;
 import dev.rohrjaspi.api.TokenCallback;
 import dev.rohrjaspi.bot.embed.ErrorEmbed;
-import dev.rohrjaspi.util.SettingsLoader;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

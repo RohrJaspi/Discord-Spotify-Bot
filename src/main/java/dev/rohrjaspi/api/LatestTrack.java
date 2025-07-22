@@ -1,11 +1,9 @@
 package dev.rohrjaspi.api;
 
 import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
 import dev.rohrjaspi.Save;
 import dev.rohrjaspi.SpotifyBot;
 import dev.rohrjaspi.bot.embed.NewSongEmbed;
-import dev.rohrjaspi.util.JsonHandler;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;

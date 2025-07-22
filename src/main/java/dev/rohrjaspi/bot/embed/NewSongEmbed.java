@@ -2,16 +2,13 @@ package dev.rohrjaspi.bot.embed;
 
 import dev.rohrjaspi.Save;
 import dev.rohrjaspi.SpotifyBot;
-import dev.rohrjaspi.util.SettingsLoader;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Slf4j
 public class NewSongEmbed {
