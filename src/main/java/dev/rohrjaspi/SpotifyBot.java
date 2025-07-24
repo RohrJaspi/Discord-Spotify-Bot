@@ -26,19 +26,16 @@ public class SpotifyBot {
     public static JsonHandler jsonHandler;
 
     public static void main(String[] args) {
-
         jsonHandler = new JsonHandler();
-        jsonHandler.readJson("data/data.json", Save.class);
-        SettingsLoader settings = new SettingsLoader();
+        saveInstance = jsonHandler.readJson("data/data.json", Save.class);
 
-        saveInstance = new Save();
+        SettingsLoader settings = new SettingsLoader();
 
         BotManager manager = new BotManager();
         CommandManager commandManager = new CommandManager();
         manager.init(commandManager);
 
-       TokenCronJob tokenCronJob = new TokenCronJob();
-
+        TokenCronJob tokenCronJob = new TokenCronJob();
         scheduler.scheduleAtFixedRate(tokenCronJob, 0, 55, TimeUnit.MINUTES);
 
         if (saveInstance.isSetup) {

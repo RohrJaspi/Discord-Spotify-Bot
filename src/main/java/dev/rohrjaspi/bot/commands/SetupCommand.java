@@ -3,12 +3,14 @@ package dev.rohrjaspi.bot.commands;
 import dev.rohrjaspi.Save;
 import dev.rohrjaspi.SpotifyBot;
 import dev.rohrjaspi.bot.commands.util.SlashCommand;
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 
 import java.util.List;
 
+@Slf4j
 public class SetupCommand extends SlashCommand {
     @Override
     public String getName() {
@@ -49,6 +51,7 @@ public class SetupCommand extends SlashCommand {
 
         SpotifyBot.startNewTrackCronJob();
         save.setIsSetup(true);
+        log.info("isSetup is set to true in Save.class");
         event.reply("Setup completed successfully!").queue();
 
     }

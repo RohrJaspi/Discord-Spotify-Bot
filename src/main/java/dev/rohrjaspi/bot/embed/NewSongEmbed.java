@@ -23,7 +23,7 @@ public class NewSongEmbed {
 
     public static void sendEmbed(String message, String imgUrl, String SongUrl) {
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd | HH:mm:ss");
         LocalDateTime now = LocalDateTime.now(); // System-Zeit ohne Zeitzone
         String formattedDate = dtf.format(now);
 
@@ -46,7 +46,7 @@ public class NewSongEmbed {
             log.error(channelID + " not found");
         }
 
-       channel.sendMessage(save.getTitle() + " <@" + pingRoleID + ">").setEmbeds(eb.build()).queue();
+       channel.sendMessage(save.getTitle() + " <@&" + pingRoleID + ">").setEmbeds(eb.build()).queue();
 
 
     }
