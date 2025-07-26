@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildMessageChannel;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -39,11 +41,18 @@ public class NewSongEmbed {
 
         String pingRoleID = save.getRolePingID();
         String channelID = save.getChannelID();
-        TextChannel channel = jda.getTextChannelById(channelID);
 
-        if (channel == null || channelID == null) {
-            log.error(channel + " not found");
-            log.error(channelID + " not found");
+        GuildChannel rawChannel;
+        try {
+            rawChannel = jda.getGuildChannelById(Long.parseLong(channelID));
+        } catch (NumberFormatException e) {
+            log.error("Invalid channel ID: " + channelID, e);
+            return;
+        }
+
+        if (!(rawChannel instanceof GuildMessageChannel channel)) {
+            log.error("Channel is not a message-capable channel: " + channelID);
+            return;
         }
 
        channel.sendMessage(save.getTitle() + " <@&" + pingRoleID + ">").setEmbeds(eb.build()).queue();

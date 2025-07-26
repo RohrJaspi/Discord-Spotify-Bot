@@ -4,7 +4,6 @@ import dev.rohrjaspi.bot.commands.SetupCommand;
 import dev.rohrjaspi.bot.commands.util.CommandManager;
 import dev.rohrjaspi.bot.embed.ErrorEmbed;
 import dev.rohrjaspi.bot.embed.NewSongEmbed;
-import dev.rohrjaspi.util.SettingsLoader;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;

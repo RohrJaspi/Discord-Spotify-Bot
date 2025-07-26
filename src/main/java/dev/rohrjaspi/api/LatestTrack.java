@@ -57,7 +57,7 @@ public class LatestTrack {
                             log.debug("Selected image: " + imageUrl);
                             NewSongEmbed.sendEmbed(latest.name, imageUrl, latest.externalUrls.spotify);
                             save.setLastReleaseDate(latest.releaseDate);
-                            SpotifyBot.getJsonHandler().insertJson("data/data.json", SpotifyBot.getSaveInstance());
+                            SpotifyBot.getJsonHandler().insertJson("/app/data/data.json", SpotifyBot.getSaveInstance());
                             log.info("Successfully saved data to data.json");
                         }
                     }

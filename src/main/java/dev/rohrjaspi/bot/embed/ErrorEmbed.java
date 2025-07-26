@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildMessageChannel;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -23,10 +25,17 @@ public class ErrorEmbed {
 
         Save save = SpotifyBot.getSaveInstance();
         String channelID = save.getChannelID();
-        TextChannel channel = api.getTextChannelById(channelID);
 
-        if (channelID == null || channelID.isEmpty()) {
-            log.warn("Channel ID is not set. Please set the channel ID in the Save class.");
+        GuildChannel rawChannel;
+        try {
+            rawChannel = api.getGuildChannelById(Long.parseLong(channelID));
+        } catch (NumberFormatException e) {
+            log.error("Invalid channel ID: " + channelID, e);
+            return;
+        }
+
+        if (!(rawChannel instanceof GuildMessageChannel channel)) {
+            log.error("Channel is not a message-capable channel: " + channelID);
             return;
         }
 
@@ -39,7 +48,7 @@ public class ErrorEmbed {
                 .addField("Stack Message", error.getMessage(), false)
                 .addField("Strack Trace", Arrays.toString(error.getStackTrace()), false);
 
-        assert channel != null;
+
         channel.sendMessageEmbeds(embed.build()).queue(
             success -> log.info("Error embed sent successfully."),
             failure -> log.error("Failed to send error embed: {}", failure.getMessage())

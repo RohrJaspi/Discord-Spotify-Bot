@@ -5,7 +5,6 @@ import dev.rohrjaspi.bot.commands.util.CommandManager;
 import dev.rohrjaspi.cronJob.NewTrackCronJob;
 import dev.rohrjaspi.cronJob.TokenCronJob;
 import dev.rohrjaspi.util.JsonHandler;
-import dev.rohrjaspi.util.SettingsLoader;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,9 +26,7 @@ public class SpotifyBot {
 
     public static void main(String[] args) {
         jsonHandler = new JsonHandler();
-        saveInstance = jsonHandler.readJson("data/data.json", Save.class);
-
-        SettingsLoader settings = new SettingsLoader();
+        saveInstance = jsonHandler.readJson("/app/data/data.json", Save.class);
 
         BotManager manager = new BotManager();
         CommandManager commandManager = new CommandManager();
